@@ -25,7 +25,7 @@ class SalaEscura extends Sala {
         } else {
             // Se o jogador tiver a lanterna, a sala se comporta como uma sala normal.
             console.log("(Você usa sua lanterna para iluminar o caminho)");
-            super.mostrarDescricao();
+            super.mostrarDescricao(jogador);
         }
     }
 }

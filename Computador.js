@@ -6,7 +6,7 @@ const Item = require('./item');
 class Computador extends Item {
     // Construtor da classe Computador.
     constructor(nome, descricao) {
-        super(nome, descricao);
+        super(nome, descricao, false);
         // O computador é um item fixo no cenário, não pode ser pego.
         this.podeSerPego = false;
     }

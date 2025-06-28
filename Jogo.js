@@ -152,7 +152,15 @@ class Jogo {
           console.log(`Não há nenhum item chamado '${nomeItemParaUsar}' aqui ou no seu inventário.`);
         }
         break;
-        
+        case "largar":
+          //Verifica se o jogador especificou um item para largar.
+          if (args.length === 0){
+            console.log("Você precisa especificar o nome do item que deseja largar. (Ex: 'largar chave')");
+          } else {
+            // Passa a responsabilidade para o jogador, enviando o nome do item.
+            this.jogador.largarItem(args.join(" "));
+          }
+        break;
       case "inventario":
         this.jogador.mostrarInventario();
         break;

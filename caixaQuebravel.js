@@ -4,14 +4,16 @@ const Item = require('./item');
 // Representa um item especial que pode ser quebrado para revelar um item secreto.
 // É uma subclasse de Item.
 class CaixaQuebravel extends Item {
+  #estaQuebrada;
+  #itemOculto;
   // Construtor da classe CaixaQuebravel
   constructor(nome, descricao, itemOculto) {
     // Chama o construtor da classe pai (Item)
-    super(nome, descricao);
+    super(nome, descricao, false);
 
     // Propriedades específicas desta classe
-    this.estaQuebrada = false; // Controla se a caixa já foi ou não quebrada.
-    this.itemOculto = itemOculto; // Guarda o item que será revelado.
+    this.#estaQuebrada = false; // Controla se a caixa já foi ou não quebrada.
+    this.#itemOculto = itemOculto; // Guarda o item que será revelado.
     this.podeSerPego = false; // A caixa não pode ser pega pelo jogador, apenas quebrada.
   }
 
@@ -19,14 +21,14 @@ class CaixaQuebravel extends Item {
   // Em vez de imprimir no console, ele retorna um objeto para a classe Jogo processar.
   quebrar() {
     // Só permite quebrar se a caixa ainda não foi quebrada
-    if (!this.estaQuebrada) {
-      this.estaQuebrada = true;
+    if (!this.#estaQuebrada) {
+      this.#estaQuebrada = true;
 
       // Retorna um objeto de resultado com sucesso, uma mensagem e o item revelado
       return {
         sucesso: true,
-        mensagem: `Você quebrou a ${this.nome} e revelou um ${this.itemOculto.nome}!`,
-        itemRevelado: this.itemOculto,
+        mensagem: `Você quebrou a ${this.nome} e revelou um ${this.#itemOculto.nome}!`,
+        itemRevelado: this.#itemOculto,
         itemARemover: this // Informa ao jogo para remover a caixa da sala após ser quebrada.
       };
     } else {
